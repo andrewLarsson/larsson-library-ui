@@ -1,0 +1,45 @@
+<div>
+	<table class="mdl-data-table mdl-js-data-table">
+		<thead>
+			<tr>
+				<th class="mdl-data-table__cell--non-numeric">Title</th>
+				<th class="mdl-data-table__cell--non-numeric">Author</th>
+				<th class="mdl-data-table__cell--non-numeric">Book Series</th>
+				<th class="mdl-data-table__cell--non-numeric">ISBN</th>
+				<th class="mdl-data-table__cell--non-numeric">Synopsis</th>
+				<th class="mdl-data-table__cell--non-numeric">Edit</th>
+				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="book in books">
+				<td class="mdl-data-table__cell--non-numeric">{{book.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{book.AuthorID}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{book.BookSeriesID}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{book.ISBN13}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{book.Synopsis}}</td>
+				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(book.BookID)">Edit</button></td>
+				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(book.BookID)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<form>
+		<input type="hidden" name="BookID" ng-model="currentBook.BookID" />
+		<label>Title</label>
+		<input type="text" name="Title" ng-model="currentBook.Title"/>
+		<label>Author</label>
+		<select ng-model="currentBook.AuthorID">
+			<option ng-repeat="author in authors" value="{{author.AuthorID}}">{{author.DisplayName}}</option>
+		</select>
+		<label>Book Series</label>
+		<select ng-model="currentBook.BookSeriesID">
+			<option value="">--None--</option>
+			<option ng-repeat="bookseries in bookserieses" value="{{bookseries.BookSeriesID}}">{{bookseries.Title}}</option>
+		</select>
+		<label>ISBN</label>
+		<input type="text" name="ISBN13" ng-model="currentBook.ISBN13"/>
+		<label>Synopsis</label>
+		<input type="text" name="Synopsis" ng-model="currentBook.Synopsis"/>
+		<input type="button" value="Save" ng-click="save()"/>
+	</form>
+</div>

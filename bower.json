@@ -1,0 +1,14 @@
+{
+	"name": "larsson-library-ui",
+	"description": "A UI for the Larsson Library API.",
+	"version": "0.1.0",
+	"homepage": "https://github.com/andrewLarsson/larsson-library-ui",
+	"dependencies": {
+		"angular": "~1.4.0",
+		"angular-route": "~1.4.0",
+		"angular-loader": "~1.4.0",
+		"angular-mocks": "~1.4.0",
+		"angular-resource": "~1.4.0",
+		"html5-boilerplate": "~5.2.0"
+	}
+}

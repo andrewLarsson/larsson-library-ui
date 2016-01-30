@@ -1,0 +1,32 @@
+<div>
+	<table class="mdl-data-table mdl-js-data-table">
+		<thead>
+			<tr>
+				<th class="mdl-data-table__cell--non-numeric">Full Name</th>
+				<th class="mdl-data-table__cell--non-numeric">First Name</th>
+				<th class="mdl-data-table__cell--non-numeric">Last Name</th>
+				<th class="mdl-data-table__cell--non-numeric">Edit</th>
+				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="author in authors">
+				<td class="mdl-data-table__cell--non-numeric">{{author.DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{author.FirstName}}</td>
+				<td class="mdl-data-table__cell--non-numeric">{{author.LastName}}</td>
+				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(author.AuthorID)">Edit</button></td>
+				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(author.AuthorID)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<form>
+		<input type="hidden" name="AuthorID" ng-model="currentAuthor.AuthorID" />
+		<label>Full Name</label>
+		<input type="text" name="DisplayName" ng-model="currentAuthor.DisplayName"/>
+		<label>First Name</label>
+		<input type="text" name="FirstName" ng-model="currentAuthor.FirstName"/>
+		<label>Last Name</label>
+		<input type="text" name="LastName" ng-model="currentAuthor.LastName"/>
+		<input type="button" value="Save" ng-click="save()"/>
+	</form>
+</div>

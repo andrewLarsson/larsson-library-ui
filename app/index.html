@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="larsson-library"> <![endif]-->
+<!--[if IE 7]> <html lang="en" class="no-js lt-ie9 lt-ie8" ng-app="larsson-library"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="no-js lt-ie9" ng-app="larsson-library"> <![endif]-->
+<!--[if gt IE 8]> <!--> <html lang="en" class="no-js" ng-app="larsson-library"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>Larsson Library</title>
+		<meta name="viewport" content="width = device-width, initial-scale = 1"/>
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css"/>
+		<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"/>
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.deep_purple-blue.min.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+		<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+	</head>
+	<body>
+		<div class="demo-layout">
+			<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+				</div>
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">Larsson Library</span>
+				<nav class="mdl-navigation">
+					<a href="#/author" class="mdl-navigation__link">Authors</a>
+					<a href="#/book" class="mdl-navigation__link">Books</a>
+					<a href="#/bookseries" class="mdl-navigation__link">Book Series</a>
+					<a href="#/checkout" class="mdl-navigation__link">Checkouts</a>
+					<a href="#/user" class="mdl-navigation__link">Users</a>
+				</nav>
+			</div>
+				<main class="mdl-layout__content">
+					<div class="page-content">
+						<div ng-view></div>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-route.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-service.js"></script>
+		<script src="app.js"></script>
+		<script src="config.js"></script>
+		<script src="components/larsson-library-api/services.js"></script>
+		<script src="views/author/author.js"></script>
+		<script src="views/book/book.js"></script>
+		<script src="views/bookseries/bookseries.js"></script>
+		<script src="views/checkout/checkout.js"></script>
+		<script src="views/user/user.js"></script>
+	</body>
+</html>
