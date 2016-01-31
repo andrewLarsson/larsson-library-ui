@@ -16,9 +16,9 @@ angular.module("larsson-library", [
 		});
 	}
 ])
-.run(function ($rootScope,$timeout) {
-	$rootScope.$on("$viewContentLoaded", ()=> {
-		$timeout(() => {
+.run(function($rootScope, $timeout) {
+	$rootScope.$on("$viewContentLoaded", function() {
+		$timeout(function() {
 			componentHandler.upgradeAllRegistered();
 		})
 	})
