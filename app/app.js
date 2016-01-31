@@ -15,4 +15,12 @@ angular.module("larsson-library", [
 			redirectTo: "/book"
 		});
 	}
-]);
+])
+.run(function ($rootScope,$timeout) {
+	$rootScope.$on("$viewContentLoaded", ()=> {
+		$timeout(() => {
+			componentHandler.upgradeAllRegistered();
+		})
+	})
+})
+;
