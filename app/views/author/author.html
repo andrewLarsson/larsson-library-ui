@@ -5,47 +5,18 @@
 				<th class="mdl-data-table__cell--non-numeric">Full Name</th>
 				<th class="mdl-data-table__cell--non-numeric">First Name</th>
 				<th class="mdl-data-table__cell--non-numeric">Last Name</th>
-				<th class="mdl-data-table__cell--non-numeric">Edit</th>
-				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+				<th class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button" style="margin-top: 7px;" ng-click="new()">Add Author</button></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="author in authors">
-				<td class="mdl-data-table__cell--non-numeric">{{author.DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{author.FirstName}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{author.LastName}}</td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(author.AuthorID)">Edit</button></td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(author.AuthorID)">Delete</button></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
-		<tbody>
-			<tr>
-				<td>
-					<form>
-						<input type="hidden" name="AuthorID" ng-model="currentAuthor.AuthorID" />
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input class="mdl-textfield__input" type="text" id="DisplayName" name="DisplayName" ng-model="currentAuthor.DisplayName"/>
-							<label class="mdl-textfield__label" for="DisplayName">Full Name</label>
-						</div>
-						<br/>
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input class="mdl-textfield__input" type="text" id="FirstName" name="FirstName" ng-model="currentAuthor.FirstName"/>
-							<label class="mdl-textfield__label" for="FirstName">First Name</label>
-						</div>
-						<br/>
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-							<input class="mdl-textfield__input" type="text" id="LastName" name="LastName" ng-model="currentAuthor.LastName"/>
-							<label class="mdl-textfield__label" for="LastName">Last Name</label>
-						</div>
-						<br/>
-						<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Save" ng-click="save()"/>
-					</form>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.FirstName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.LastName}}</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(author.AuthorID)">Delete</button>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
 </div>

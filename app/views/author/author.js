@@ -6,43 +6,55 @@ angular.module("larsson-library.author", [
 ]).config([
 	"$routeProvider",
 	function($routeProvider) {
-		$routeProvider.when("/author", {
+		$routeProvider
+		.when("/author", {
 			templateUrl: "views/author/author.html",
 			controller: "AuthorViewController"
-		});
+		})
+		.when('/author/:authorID', {
+			templateUrl: "views/author/author-detail.html",
+			controller: "AuthorViewController"
+		})
+		.when('/author/new', {
+			templateUrl: "views/author/author-detail.html",
+			controller: "AuthorViewController"
+		})
+		;
 	}
 ]).controller("AuthorViewController", [
 	"$scope",
+	"$location",
+	"$routeParams",
 	"Author",
-	function($scope, Author) {
-		$scope.currentAuthor = {};
-		$scope.authors = [];
-		Author.readAll().success(function(data) {
-			$scope.authors = data;
-		});
+	function($scope, $location, $routeParams, Author) {
+		$scope.$parent.Title = "Authors";
+		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
+		if ($routeParams.authorID) {
+			$scope.currentAuthor = {};
+			Author.read($routeParams.authorID).success(function(data) {
+				$scope.currentAuthor = data;
+			});
+		} else {
+			$scope.authors = [];
+			Author.readAll().success(function(data) {
+				$scope.authors = data;
+			});
+		}
 		$scope.save = function() {
 			(($scope.currentAuthor.AuthorID)
-				? Author.update($scope.currentAuthor).success(function() {
-					$scope.currentAuthor = {};
-					Author.readAll().success(function(data) {
-						$scope.authors = data;
-					});
+				? Author.update($scope.currentAuthor).success(function(data) {
+					$location.path("/author");
 				})
-				: Author.create($scope.currentAuthor).success(function() {
-					$scope.currentAuthor = {};
-					Author.readAll().success(function(data) {
-						$scope.authors = data;
-					});
+				: Author.create($scope.currentAuthor).success(function(data) {
+					$location.path("/author");
 				})
 			);
 		}
 		$scope.edit = function(authorID) {
-			for (var i = 0; i < $scope.authors.length; i ++) {
-				if ($scope.authors[i].AuthorID == authorID) {
-					$scope.currentAuthor = $scope.authors[i];
-					break;
-				}
-			}
+			$location.path("/author/" + authorID);
+		}
+		$scope.new = function() {
+			$location.path("/author/new");
 		}
 		$scope.remove = function(authorID) {
 			Author.remove(authorID).success(function() {
