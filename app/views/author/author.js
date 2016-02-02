@@ -58,7 +58,6 @@ angular.module("larsson-library.author", [
 		}
 		$scope.remove = function(authorID) {
 			Author.remove(authorID).success(function() {
-				$scope.currentAuthor = {};
 				Author.readAll().success(function(data) {
 					$scope.authors = data;
 				});

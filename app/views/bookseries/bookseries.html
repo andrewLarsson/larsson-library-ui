@@ -1,24 +1,20 @@
 <div>
-	<table class="mdl-data-table mdl-js-data-table">
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
 		<thead>
 			<tr>
 				<th class="mdl-data-table__cell--non-numeric">Title</th>
-				<th class="mdl-data-table__cell--non-numeric">Edit</th>
-				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+				<th class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button" style="margin-top: 7px;" ng-click="new()">Add Book Series</button>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="bookseries in bookserieses">
-				<td class="mdl-data-table__cell--non-numeric">{{bookseries.Title}}</td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(bookseries.BookSeriesID)">Edit</button></td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(bookseries.BookSeriesID)">Delete</button></td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(bookseries.BookSeriesID)">{{bookseries.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(bookseries.BookSeriesID)">Delete</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<form>
-		<input type="hidden" name="BookSeriesID" ng-model="currentBookSeries.BookSeriesID" />
-		<label>Title</label>
-		<input type="text" name="Title" ng-model="currentBookSeries.Title"/>
-		<input type="button" value="Save" ng-click="save()"/>
-	</form>
 </div>

@@ -1,40 +1,30 @@
 <div>
-	<table class="mdl-data-table mdl-js-data-table">
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
 		<thead>
 			<tr>
 				<th class="mdl-data-table__cell--non-numeric">Book</th>
 				<th class="mdl-data-table__cell--non-numeric">User</th>
 				<th class="mdl-data-table__cell--non-numeric">Checkout Date</th>
 				<th class="mdl-data-table__cell--non-numeric">Checkin Date</th>
-				<th class="mdl-data-table__cell--non-numeric">Edit</th>
-				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+				<th class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button" style="margin-top: 7px;" ng-click="new()">Checkout</button>
+				</th>
+				<th class="mdl-data-table__cell--non-numeric"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="checkout in checkouts">
-				<td class="mdl-data-table__cell--non-numeric">{{checkout.BookID}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{checkout.UserID}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{checkout.OutDate}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{checkout.InDate}}</td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(checkout.CheckoutID)">Edit</button></td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(checkout.CheckoutID)">Delete</button></td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{books[checkout.BookID].Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{users[checkout.UserID].DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{checkout.OutDate}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{checkout.InDate}}</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-hide="checkout.InDate" ng-click="checkin(checkout)">Checkin</button>
+				</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(checkout.CheckoutID)">Delete</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<form>
-		<input type="hidden" name="CheckoutID" ng-model="currentCheckout.CheckoutID" />
-		<label>Book</label>
-		<select ng-model="currentCheckout.BookID">
-			<option ng-repeat="book in books" value="{{book.BookID}}">{{book.Title}}</option>
-		</select>
-		<label>User</label>
-		<select ng-model="currentCheckout.UserID">
-			<option ng-repeat="user in users" value="{{user.UserID}}">{{user.DisplayName}}</option>
-		</select>
-		<label>Checkout Date</label>
-		<input type="text" name="OutDate" ng-model="currentCheckout.OutDate"/>
-		<label>Checkin Date</label>
-		<input type="text" name="InDate" ng-model="currentCheckout.InDate"/>
-		<input type="button" value="Save" ng-click="save()"/>
-	</form>
 </div>

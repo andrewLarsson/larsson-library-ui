@@ -1,32 +1,24 @@
 <div>
-	<table class="mdl-data-table mdl-js-data-table">
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
 		<thead>
 			<tr>
 				<th class="mdl-data-table__cell--non-numeric">Full Name</th>
 				<th class="mdl-data-table__cell--non-numeric">First Name</th>
 				<th class="mdl-data-table__cell--non-numeric">Last Name</th>
-				<th class="mdl-data-table__cell--non-numeric">Edit</th>
-				<th class="mdl-data-table__cell--non-numeric">Delete</th>
+				<th class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button" style="margin-top: 7px;" ng-click="new()">Add User</button>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="user in users">
-				<td class="mdl-data-table__cell--non-numeric">{{user.DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{user.FirstName}}</td>
-				<td class="mdl-data-table__cell--non-numeric">{{user.LastName}}</td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="edit(user.UserID)">Edit</button></td>
-				<td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(user.UserID)">Delete</button></td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(user.UserID)">{{user.DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(user.UserID)">{{user.FirstName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(user.UserID)">{{user.LastName}}</td>
+				<td class="mdl-data-table__cell--non-numeric">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(user.UserID)">Delete</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<form>
-		<input type="hidden" name="UserID" ng-model="currentUser.UserID" />
-		<label>Full Name</label>
-		<input type="text" name="DisplayName" ng-model="currentUser.DisplayName"/>
-		<label>First Name</label>
-		<input type="text" name="FirstName" ng-model="currentUser.FirstName"/>
-		<label>Last Name</label>
-		<input type="text" name="LastName" ng-model="currentUser.LastName"/>
-		<input type="button" value="Save" ng-click="save()"/>
-	</form>
 </div>

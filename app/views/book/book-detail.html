@@ -1,0 +1,42 @@
+<div style="width:100%; padding: 25px; margin: 0 auto;">
+	<form>
+		<input type="hidden" name="BookID" ng-model="currentBook.BookID" />
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>Title</label>
+			<input class="mdl-textfield__input" type="text" id="Title" name="Title" ng-model="currentBook.Title"/>
+			<label class="mdl-textfield__label" for="Title"></label>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>Author</label>
+			</br>
+			<select ng-model="currentBook.AuthorID">
+				<option ng-repeat="author in authors" value="{{author.AuthorID}}">{{author.DisplayName}}</option>
+			</select>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>Book Series</label>
+			</br>
+			<select ng-model="currentBook.BookSeriesID">
+				<option value="">--None--</option>
+				<option ng-repeat="bookseries in bookserieses" value="{{bookseries.BookSeriesID}}">{{bookseries.Title}}</option>
+			</select>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>ISBN</label>
+			<input class="mdl-textfield__input" type="text" id="ISBN13" name="ISBN13" pattern="[0-9]{13}" ng-model="currentBook.ISBN13"/>
+			<label class="mdl-textfield__label" for="ISBN13"></label>
+			<span class="mdl-textfield__error">ISBN is numeric and is 13 digits long.</span>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>Synopsis</label>
+			<textarea class="mdl-textfield__input" type="text" rows= "3" id="Synopsis" name="Synopsis" ng-model="currentBook.Synopsis"/>
+			<label class="mdl-textfield__label" for="Synopsis"></label>
+		</div>
+		<br/>
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Save" ng-click="save()"/>
+	</form>
+</div>

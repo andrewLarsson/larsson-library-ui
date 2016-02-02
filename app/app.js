@@ -21,6 +21,6 @@ angular.module("larsson-library", [
 		$timeout(function() {
 			componentHandler.upgradeAllRegistered();
 		})
-	})
+	});
 })
 ;
