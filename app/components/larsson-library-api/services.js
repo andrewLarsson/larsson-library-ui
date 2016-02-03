@@ -75,6 +75,16 @@ angular.module("larsson-library-api-services", [
 					}
 				});
 			},
+			readByISBN13: function(isbn13) {
+				return $http({
+					method: "GET",
+					url: config.API_BASE_URL + "/book/",
+					responseType: "json",
+					params: {
+						ISBN13: isbn13
+					}
+				});
+			},
 			readAll: function() {
 				return $http({
 					method: "GET",

@@ -25,10 +25,12 @@ angular.module("larsson-library.book", [
 	"$scope",
 	"$location",
 	"$routeParams",
+	"$window",
+	"$timeout",
 	"Book",
 	"Author",
 	"BookSeries",
-	function($scope, $location, $routeParams, Book, Author, BookSeries) {
+	function($scope, $location, $routeParams, $window, $timeout, Book, Author, BookSeries) {
 		$scope.$parent.Title = "Books";
 		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
 		if ($routeParams.bookID) {
@@ -45,6 +47,15 @@ angular.module("larsson-library.book", [
 				$scope.bookserieses = data;
 			});
 		} else {
+			$scope.setISBN13SearchFocus = function() {
+				$timeout(function() {
+					var ISBN13SearchElement = $window.document.getElementById("ISBN13Search");
+					if (ISBN13SearchElement) {
+						ISBN13SearchElement.focus();
+					}
+				});
+			}
+			$scope.setISBN13SearchFocus();
 			$scope.books = [];
 			$scope.authors = [];
 			$scope.bookserieses = [];
@@ -59,6 +70,13 @@ angular.module("larsson-library.book", [
 			BookSeries.readAll().success(function(data) {
 				for (var i = 0; i < data.length; i ++) {
 					$scope.bookserieses[data[i].BookSeriesID] = data[i];
+				}
+			});
+		}
+		$scope.searchByISBN13 = function(bookSearchISBN13) {
+			Book.readByISBN13(bookSearchISBN13).success(function(data) {
+				if (data.BookID) {
+					$location.path("/book/" + data.BookID);
 				}
 			});
 		}

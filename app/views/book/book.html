@@ -1,4 +1,21 @@
 <div>
+	<!--
+	<form ng-submit="searchByISBN13(bookSearchISBN13)" style="position: absolute;">
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-left: 10px; margin-top: -5px; margin-bottom: -5px;">
+			<label class="mdl-button mdl-js-button mdl-button--icon" for="ISBN13Search">
+				<i class="material-icons">search</i>
+			</label>
+			<div class="mdl-textfield__expandable-holder">
+				<input class="mdl-textfield__input" type="text" id="ISBN13Search" pattern="[0-9]{13}" ng-blur="setISBN13SearchFocus()" ng-model="bookSearchISBN13"/>
+				<label class="mdl-textfield__label" for="ISBN13Search">ISBN</label>
+				<span class="mdl-textfield__error">ISBN is numeric and is 13 digits long.</span>
+			</div>
+		</div>
+	</form>
+	-->
+	<form ng-submit="searchByISBN13(bookSearchISBN13)" style="position: absolute;">
+		<input type="text" id="ISBN13Search" ng-blur="setISBN13SearchFocus()" ng-model="bookSearchISBN13"/>
+	</form>
 	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
 		<thead>
 			<tr>
