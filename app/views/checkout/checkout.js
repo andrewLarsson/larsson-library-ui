@@ -15,7 +15,11 @@ angular.module("larsson-library.checkout", [
 			templateUrl: "views/checkout/checkout-detail.html",
 			controller: "CheckoutViewController"
 		})
-		.when('/author/new', {
+		.when('/checkout/book/:bookID', {
+			templateUrl: "views/checkout/checkout-detail.html",
+			controller: "CheckoutViewController"
+		})
+		.when('/checkout/new', {
 			templateUrl: "views/checkout/checkout-detail.html",
 			controller: "CheckoutViewController"
 		})
@@ -25,25 +29,34 @@ angular.module("larsson-library.checkout", [
 	"$scope",
 	"$location",
 	"$routeParams",
+	"$window",
+	"$timeout",
 	"Checkout",
 	"Book",
 	"User",
-	function($scope, $location, $routeParams, Checkout, Book, User) {
+	function($scope, $location, $routeParams, $window, $timeout, Checkout, Book, User) {
 		$scope.$parent.Title = "Checkouts";
 		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
-		if ($routeParams.checkoutID) {
+		if ($routeParams.checkoutID || $routeParams.bookID) {
 			$scope.currentCheckout = {};
 			$scope.books = [];
 			$scope.users = [];
-			Checkout.read($routeParams.checkoutID).success(function(data) {
-				$scope.currentCheckout = data;
-			});
 			Book.readAll().success(function(data) {
 				$scope.books = data;
 			});
 			User.readAll().success(function(data) {
 				$scope.users = data;
 			});
+			if ($routeParams.checkoutID) {
+				Checkout.read($routeParams.checkoutID).success(function(data) {
+					$scope.currentCheckout = data;
+				});
+			}
+			if ($routeParams.bookID) {
+				$scope.currentCheckout.BookID = $routeParams.bookID;
+				console.log("Tyler sux2.");
+			}
+			console.log("Tyler sux1.");
 		} else {
 			$scope.checkouts = [];
 			$scope.books = [];
@@ -62,6 +75,15 @@ angular.module("larsson-library.checkout", [
 				}
 			});
 		}
+		$scope.setISBN13SearchFocus = function() {
+			$timeout(function() {
+				var ISBN13SearchElement = $window.document.getElementById("ISBN13Search");
+				if (ISBN13SearchElement) {
+					ISBN13SearchElement.focus();
+				}
+			});
+		}
+		$scope.setISBN13SearchFocus();
 		$scope.checkin = function(checkout) {
 			var now = new Date();
 			var dd = now.getDate();
@@ -89,6 +111,13 @@ angular.module("larsson-library.checkout", [
 			checkout.InDate = timestamp;
 			Checkout.update(checkout).success(function(data) {
 				$location.path("/checkout");
+			});
+		}
+		$scope.searchByISBN13 = function(bookSearchISBN13) {
+			Book.readByISBN13(bookSearchISBN13).success(function(data) {
+				if (data.BookID) {
+					$location.path("/checkout/book/" + data.BookID);
+				}
 			});
 		}
 		$scope.save = function() {

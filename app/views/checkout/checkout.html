@@ -1,4 +1,7 @@
 <div>
+	<form ng-submit="searchByISBN13(bookSearchISBN13)" style="position: absolute;">
+		<input type="text" id="ISBN13Search" ng-blur="setISBN13SearchFocus()" ng-model="bookSearchISBN13"/>
+	</form>
 	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
 		<thead>
 			<tr>

@@ -47,15 +47,6 @@ angular.module("larsson-library.book", [
 				$scope.bookserieses = data;
 			});
 		} else {
-			$scope.setISBN13SearchFocus = function() {
-				$timeout(function() {
-					var ISBN13SearchElement = $window.document.getElementById("ISBN13Search");
-					if (ISBN13SearchElement) {
-						ISBN13SearchElement.focus();
-					}
-				});
-			}
-			$scope.setISBN13SearchFocus();
 			$scope.books = [];
 			$scope.authors = [];
 			$scope.bookserieses = [];
@@ -73,6 +64,15 @@ angular.module("larsson-library.book", [
 				}
 			});
 		}
+		$scope.setISBN13SearchFocus = function() {
+			$timeout(function() {
+				var ISBN13SearchElement = $window.document.getElementById("ISBN13Search");
+				if (ISBN13SearchElement) {
+					ISBN13SearchElement.focus();
+				}
+			});
+		}
+		$scope.setISBN13SearchFocus();
 		$scope.searchByISBN13 = function(bookSearchISBN13) {
 			Book.readByISBN13(bookSearchISBN13).success(function(data) {
 				if (data.BookID) {
