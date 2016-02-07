@@ -54,9 +54,7 @@ angular.module("larsson-library.checkout", [
 			}
 			if ($routeParams.bookID) {
 				$scope.currentCheckout.BookID = $routeParams.bookID;
-				console.log("Tyler sux2.");
 			}
-			console.log("Tyler sux1.");
 		} else {
 			$scope.checkouts = [];
 			$scope.books = [];
