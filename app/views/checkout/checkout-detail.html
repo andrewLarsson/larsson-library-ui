@@ -5,7 +5,7 @@
 			<label>Book</label>
 			</br>
 			<select ng-model="currentCheckout.BookID">
-				<option ng-repeat="book in books track" value="{{book.BookID}}">{{book.Title}}</option>
+				<option ng-repeat="book in books" value="{{book.BookID}}">{{book.Title}}</option>
 			</select>
 		</div>
 		</br>
