@@ -85,6 +85,26 @@ angular.module("larsson-library-api-services", [
 					}
 				});
 			},
+			readByAuthor: function(authorID) {
+				return $http({
+					method: "GET",
+					url: config.API_BASE_URL + "/book/",
+					responseType: "json",
+					params: {
+						AuthorID: authorID
+					}
+				});
+			},
+			readByBookSeries: function(bookSeriesID) {
+				return $http({
+					method: "GET",
+					url: config.API_BASE_URL + "/book/",
+					responseType: "json",
+					params: {
+						BookSeriesID: bookSeriesID
+					}
+				});
+			},
 			readAll: function() {
 				return $http({
 					method: "GET",

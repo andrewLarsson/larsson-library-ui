@@ -26,13 +26,25 @@ angular.module("larsson-library.author", [
 	"$location",
 	"$routeParams",
 	"Author",
-	function($scope, $location, $routeParams, Author) {
+	"Book",
+	"BookSeries",
+	function($scope, $location, $routeParams, Author, Book, BookSeries) {
 		$scope.$parent.Title = "Authors";
 		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
 		if ($routeParams.authorID) {
 			$scope.currentAuthor = {};
+			$scope.books = [];
+			$scope.bookserieses = [];
 			Author.read($routeParams.authorID).success(function(data) {
 				$scope.currentAuthor = data;
+			});
+			Book.readByAuthor($routeParams.authorID).success(function(data) {
+				$scope.books = data;
+			});
+			BookSeries.readAll().success(function(data) {
+				for (var i = 0; i < data.length; i ++) {
+					$scope.bookserieses[data[i].BookSeriesID] = data[i];
+				}
 			});
 		} else {
 			$scope.authors = [];
@@ -52,6 +64,9 @@ angular.module("larsson-library.author", [
 		}
 		$scope.edit = function(authorID) {
 			$location.path("/author/" + authorID);
+		}
+		$scope.editBook = function(bookID) {
+			$location.path("/book/" + bookID);
 		}
 		$scope.new = function() {
 			$location.path("/author/new");

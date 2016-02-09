@@ -10,3 +10,21 @@
 		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Save" ng-click="save()"/>
 	</form>
 </div>
+<div>
+	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">
+		<thead>
+			<tr>
+				<th class="mdl-data-table__cell--non-numeric">Title</th>
+				<th class="mdl-data-table__cell--non-numeric">Author</th>
+				<th class="mdl-data-table__cell--non-numeric">Book Series</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="book in books">
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{book.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{authors[book.AuthorID].DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{currentBookSeries.Title}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

@@ -26,13 +26,25 @@ angular.module("larsson-library.bookseries", [
 	"$location",
 	"$routeParams",
 	"BookSeries",
-	function($scope, $location, $routeParams, BookSeries) {
+	"Author",
+	"Book",
+	function($scope, $location, $routeParams, BookSeries, Author, Book) {
 		$scope.$parent.Title = "Book Series";
 		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
 		if ($routeParams.bookSeriesID) {
 			$scope.currentBookSeries = {};
+			$scope.books = [];
+			$scope.authors = [];
 			BookSeries.read($routeParams.bookSeriesID).success(function(data) {
 				$scope.currentBookSeries = data;
+			});
+			Book.readByBookSeries($routeParams.bookSeriesID).success(function(data) {
+				$scope.books = data;
+			});
+			Author.readAll().success(function(data) {
+				for (var i = 0; i < data.length; i ++) {
+					$scope.authors[data[i].AuthorID] = data[i];
+				}
 			});
 		} else {
 			$scope.bookserieses = [];
