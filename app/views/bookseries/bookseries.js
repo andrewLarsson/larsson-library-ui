@@ -15,7 +15,7 @@ angular.module("larsson-library.bookseries", [
 			templateUrl: "views/bookseries/bookseries-detail.html",
 			controller: "BookSeriesViewController"
 		})
-		.when('/author/new', {
+		.when('/bookseries/new', {
 			templateUrl: "views/bookseries/bookseries-detail.html",
 			controller: "BookSeriesViewController"
 		})

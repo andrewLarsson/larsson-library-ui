@@ -15,7 +15,7 @@ angular.module("larsson-library.user", [
 			templateUrl: "views/user/user-detail.html",
 			controller: "UserViewController"
 		})
-		.when('/author/new', {
+		.when('/user/new', {
 			templateUrl: "views/user/user-detail.html",
 			controller: "UserViewController"
 		})
