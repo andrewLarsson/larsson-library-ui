@@ -12,9 +12,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="author in authors">
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.FirstName}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(author.AuthorID)">{{author.LastName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(author.AuthorID)">{{author.DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(author.AuthorID)">{{author.FirstName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(author.AuthorID)">{{author.LastName}}</td>
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(author.AuthorID)">Delete</button>
 				</td>

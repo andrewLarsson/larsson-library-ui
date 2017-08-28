@@ -75,5 +75,8 @@ angular.module("larsson-library.bookseries", [
 				});
 			});
 		}
+		$scope.bookDetail = function(bookID) {
+			$location.path("/book/" + bookID);
+		}
 	}
 ]);

@@ -11,12 +11,16 @@ angular.module("larsson-library.author", [
 			templateUrl: "views/author/author.html",
 			controller: "AuthorViewController"
 		})
+		.when('/author/new', {
+			templateUrl: "views/author/author-edit.html",
+			controller: "AuthorViewController"
+		})
 		.when('/author/:authorID', {
 			templateUrl: "views/author/author-detail.html",
 			controller: "AuthorViewController"
 		})
-		.when('/author/new', {
-			templateUrl: "views/author/author-detail.html",
+		.when('/author/:authorID/edit', {
+			templateUrl: "views/author/author-edit.html",
 			controller: "AuthorViewController"
 		})
 		;
@@ -52,24 +56,28 @@ angular.module("larsson-library.author", [
 				$scope.authors = data;
 			});
 		}
+		$scope.new = function() {
+			$location.path("/author/new");
+		}
+		$scope.detail = function(authorID) {
+			if (authorID) {
+				$location.path("/author/" + authorID);
+			} else {
+				$location.path("/author");
+			}
+		}
+		$scope.edit = function(authorID) {
+			$location.path("/author/" + authorID + "/edit");
+		}
 		$scope.save = function() {
 			(($scope.currentAuthor.AuthorID)
 				? Author.update($scope.currentAuthor).success(function(data) {
-					$location.path("/author");
+					$location.path("/author/" + $scope.currentAuthor.AuthorID);
 				})
 				: Author.create($scope.currentAuthor).success(function(data) {
-					$location.path("/author");
+					$location.path("/author/" + data.AuthorID);
 				})
 			);
-		}
-		$scope.edit = function(authorID) {
-			$location.path("/author/" + authorID);
-		}
-		$scope.editBook = function(bookID) {
-			$location.path("/book/" + bookID);
-		}
-		$scope.new = function() {
-			$location.path("/author/new");
 		}
 		$scope.remove = function(authorID) {
 			Author.remove(authorID).success(function() {
@@ -77,6 +85,9 @@ angular.module("larsson-library.author", [
 					$scope.authors = data;
 				});
 			});
+		}
+		$scope.bookDetail = function(bookID) {
+			$location.path("/book/" + bookID);
 		}
 	}
 ]);

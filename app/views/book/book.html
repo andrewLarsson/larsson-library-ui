@@ -15,9 +15,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="book in books">
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{book.Title}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{authors[book.AuthorID].DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{bookserieses[book.BookSeriesID].Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(book.BookID)">{{book.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(book.BookID)">{{authors[book.AuthorID].DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(book.BookID)">{{bookserieses[book.BookSeriesID].Title}}</td>
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-click="remove(book.BookID)">Delete</button>
 				</td>

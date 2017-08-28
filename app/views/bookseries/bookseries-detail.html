@@ -21,9 +21,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="book in books">
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{book.Title}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{authors[book.AuthorID].DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(book.BookID)">{{currentBookSeries.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="bookDetail(book.BookID)">{{book.Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="bookDetail(book.BookID)">{{authors[book.AuthorID].DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="bookDetail(book.BookID)">{{currentBookSeries.Title}}</td>
 			</tr>
 		</tbody>
 	</table>
