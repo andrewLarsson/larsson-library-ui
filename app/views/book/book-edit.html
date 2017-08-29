@@ -9,7 +9,7 @@
 		<br/>
 		<div class="mdl-textfield mdl-js-textfield">
 			<label>Author</label>
-			</br>
+			<br/>
 			<select ng-model="currentBook.AuthorID">
 				<option ng-repeat="author in authors | filter:'!true' track by $index" value="{{author.AuthorID}}">{{author.DisplayName}}</option>
 			</select>
@@ -17,7 +17,7 @@
 		<br/>
 		<div class="mdl-textfield mdl-js-textfield">
 			<label>Book Series</label>
-			</br>
+			<br/>
 			<select ng-model="currentBook.BookSeriesID">
 				<option value="">--None--</option>
 				<option ng-repeat="bookseries in bookserieses | filter:'!true' track by $index" value="{{bookseries.BookSeriesID}}">{{bookseries.Title}}</option>
