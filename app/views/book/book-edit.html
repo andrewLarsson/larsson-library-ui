@@ -11,7 +11,7 @@
 			<label>Author</label>
 			</br>
 			<select ng-model="currentBook.AuthorID">
-				<option ng-repeat="author in authors | filter:'!true' track by $index " value="{{author.AuthorID}}">{{author.DisplayName}}</option>
+				<option ng-repeat="author in authors | filter:'!true' track by $index" value="{{author.AuthorID}}">{{author.DisplayName}}</option>
 			</select>
 		</div>
 		<br/>

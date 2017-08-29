@@ -11,12 +11,16 @@ angular.module("larsson-library.user", [
 			templateUrl: "views/user/user.html",
 			controller: "UserViewController"
 		})
+		.when('/user/new', {
+			templateUrl: "views/user/user-edit.html",
+			controller: "UserViewController"
+		})
 		.when('/user/:userID', {
 			templateUrl: "views/user/user-detail.html",
 			controller: "UserViewController"
 		})
-		.when('/user/new', {
-			templateUrl: "views/user/user-detail.html",
+		.when('/user/:userID/edit', {
+			templateUrl: "views/user/user-edit.html",
 			controller: "UserViewController"
 		})
 		;
@@ -40,21 +44,28 @@ angular.module("larsson-library.user", [
 				$scope.users = data;
 			});
 		}
+		$scope.new = function() {
+			$location.path("/user/new");
+		}
+		$scope.detail = function(userID) {
+			if (userID) {
+				$location.path("/user/" + userID);
+			} else {
+				$location.path("/user");
+			}
+		}
+		$scope.edit = function(userID) {
+			$location.path("/user/" + userID + "/edit");
+		}
 		$scope.save = function() {
 			(($scope.currentUser.UserID)
 				? User.update($scope.currentUser).success(function(data) {
-					$location.path("/user");
+					$location.path("/user/" + $scope.currentUser.UserID);
 				})
 				: User.create($scope.currentUser).success(function(data) {
-					$location.path("/user");
+					$location.path("/user/" + data.UserID);
 				})
 			);
-		}
-		$scope.edit = function(userID) {
-			$location.path("/user/" + userID);
-		}
-		$scope.new = function() {
-			$location.path("/user/new");
 		}
 		$scope.remove = function(userID) {
 			User.remove(userID).success(function() {

@@ -1,0 +1,35 @@
+<div style="width:100%; padding: 25px; margin: 0 auto;">
+	<form>
+		<input type="hidden" name="CheckoutID" ng-model="currentCheckout.CheckoutID" />
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>Book</label>
+			<br/>
+			<select ng-model="currentCheckout.BookID">
+				<option ng-repeat="book in books | filter:'!true' track by $index" value="{{book.BookID}}">{{book.Title}}</option>
+			</select>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield">
+			<label>User</label>
+			<br/>
+			<select ng-model="currentCheckout.UserID">
+				<option ng-repeat="user in users | filter:'!true' track by $index" value="{{user.UserID}}">{{user.DisplayName}}</option>
+			</select>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield" ng-show="currentCheckout.OutDate">
+			<label>Checkout Date</label>
+			<input class="mdl-textfield__input" type="text" id="OutDate" name="OutDate" ng-model="currentCheckout.OutDate"/>
+			<label class="mdl-textfield__label" for="OutDate"></label>
+		</div>
+		<br/>
+		<div class="mdl-textfield mdl-js-textfield" ng-show="currentCheckout.OutDate">
+			<label>Checkin Date</label>
+			<input class="mdl-textfield__input" type="text" id="InDate" name="InDate" ng-model="currentCheckout.InDate"/>
+			<label class="mdl-textfield__label" for="InDate"></label>
+		</div>
+		<br/>
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Cancel" ng-click="detail(currentCheckout.CheckoutID)"/>
+		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="{{(currentCheckout.OutDate ? 'Save' : 'Checkout')}}" ng-click="save()"/>
+	</form>
+</div>

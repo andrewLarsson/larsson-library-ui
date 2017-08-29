@@ -1,14 +1,10 @@
 <div style="width:100%; padding: 25px; margin: 0 auto;">
-	<form>
-		<input type="hidden" name="BookSeriesID" ng-model="currentBookSeries.BookSeriesID" />
-		<div class="mdl-textfield mdl-js-textfield">
-			<label>Title</label>
-			<input class="mdl-textfield__input" type="text" id="Title" name="Title" ng-model="currentBookSeries.Title"/>
-			<label class="mdl-textfield__label" for="Title"></label>
-		</div>
+	<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="float: right; right: 50px;" type="button" value="Edit" ng-click="edit(currentBookSeries.BookSeriesID)"/>
+	<div class="mdl-textfield mdl-js-textfield">
+		<label>Title</label>
 		<br/>
-		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Save" ng-click="save()"/>
-	</form>
+		<label>{{currentBookSeries.Title}}</label>
+	</div>
 </div>
 <div>
 	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%; padding: 25px; margin: 0 auto;">

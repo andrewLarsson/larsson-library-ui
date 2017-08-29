@@ -11,12 +11,16 @@ angular.module("larsson-library.bookseries", [
 			templateUrl: "views/bookseries/bookseries.html",
 			controller: "BookSeriesViewController"
 		})
+		.when('/bookseries/new', {
+			templateUrl: "views/bookseries/bookseries-edit.html",
+			controller: "BookSeriesViewController"
+		})
 		.when('/bookseries/:bookSeriesID', {
 			templateUrl: "views/bookseries/bookseries-detail.html",
 			controller: "BookSeriesViewController"
 		})
-		.when('/bookseries/new', {
-			templateUrl: "views/bookseries/bookseries-detail.html",
+		.when('/bookseries/:bookSeriesID/edit', {
+			templateUrl: "views/bookseries/bookseries-edit.html",
 			controller: "BookSeriesViewController"
 		})
 		;
@@ -52,21 +56,28 @@ angular.module("larsson-library.bookseries", [
 				$scope.bookserieses = data;
 			});
 		}
+		$scope.new = function() {
+			$location.path("/bookseries/new");
+		}
+		$scope.detail = function(bookSeriesID) {
+			if (bookSeriesID) {
+				$location.path("/bookseries/" + bookSeriesID);
+			} else {
+				$location.path("/bookseries");
+			}
+		}
+		$scope.edit = function(bookSeriesID) {
+			$location.path("/bookseries/" + bookSeriesID + "/edit");
+		}
 		$scope.save = function() {
 			(($scope.currentBookSeries.BookSeriesID)
 				? BookSeries.update($scope.currentBookSeries).success(function(data) {
-					$location.path("/bookseries");
+					$location.path("/bookseries/" + $scope.currentBookSeries.BookSeriesID);
 				})
 				: BookSeries.create($scope.currentBookSeries).success(function(data) {
-					$location.path("/bookseries");
+					$location.path("/bookseries/" + data.BookSeriesID);
 				})
 			);
-		}
-		$scope.edit = function(bookSeriesID) {
-			$location.path("/bookseries/" + bookSeriesID);
-		}
-		$scope.new = function() {
-			$location.path("/bookseries/new");
 		}
 		$scope.remove = function(bookSeriesID) {
 			BookSeries.remove(bookSeriesID).success(function() {

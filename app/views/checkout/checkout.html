@@ -15,9 +15,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="checkout in checkouts" ng-hide="checkout.InDate">
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{books[checkout.BookID].Title}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{users[checkout.UserID].DisplayName}}</td>
-				<td class="mdl-data-table__cell--non-numeric" ng-click="edit(checkout.CheckoutID)">{{checkout.OutDate}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(checkout.CheckoutID)">{{books[checkout.BookID].Title}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(checkout.CheckoutID)">{{users[checkout.UserID].DisplayName}}</td>
+				<td class="mdl-data-table__cell--non-numeric" ng-click="detail(checkout.CheckoutID)">{{checkout.OutDate}}</td>
 				<td class="mdl-data-table__cell--non-numeric">
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="position: relative; top: -7px;" ng-hide="checkout.InDate" ng-click="checkin(checkout)">Checkin</button>
 				</td>

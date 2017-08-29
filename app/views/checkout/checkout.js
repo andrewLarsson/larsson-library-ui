@@ -11,16 +11,20 @@ angular.module("larsson-library.checkout", [
 			templateUrl: "views/checkout/checkout.html",
 			controller: "CheckoutViewController"
 		})
+		.when('/checkout/new', {
+			templateUrl: "views/checkout/checkout-edit.html",
+			controller: "CheckoutViewController"
+		})
+		.when('/checkout/book/:bookID', {
+			templateUrl: "views/checkout/checkout-edit.html",
+			controller: "CheckoutViewController"
+		})
 		.when('/checkout/:checkoutID', {
 			templateUrl: "views/checkout/checkout-detail.html",
 			controller: "CheckoutViewController"
 		})
-		.when('/checkout/book/:bookID', {
-			templateUrl: "views/checkout/checkout-detail.html",
-			controller: "CheckoutViewController"
-		})
-		.when('/checkout/new', {
-			templateUrl: "views/checkout/checkout-detail.html",
+		.when('/checkout/:checkoutID/edit', {
+			templateUrl: "views/checkout/checkout-edit.html",
 			controller: "CheckoutViewController"
 		})
 		;
@@ -39,6 +43,8 @@ angular.module("larsson-library.checkout", [
 		$(".mdl-layout__drawer, .mdl-layout__obfuscator").removeClass("is-visible");
 		if ($routeParams.checkoutID || $routeParams.bookID) {
 			$scope.currentCheckout = {};
+			$scope.currentCheckout.Book = {};
+			$scope.currentCheckout.User = {};
 			$scope.books = [];
 			$scope.users = [];
 			Book.readAll().success(function(data) {
@@ -50,6 +56,14 @@ angular.module("larsson-library.checkout", [
 			if ($routeParams.checkoutID) {
 				Checkout.read($routeParams.checkoutID).success(function(data) {
 					$scope.currentCheckout = data;
+				}).then(function(nothing) {
+					Book.read($scope.currentCheckout.BookID).success(function(data) {
+						$scope.currentCheckout.Book = data;
+					});
+				}).then(function(nothing) {
+					User.read($scope.currentCheckout.UserID).success(function(data) {
+						$scope.currentCheckout.User = data;
+					});
 				});
 			}
 			if ($routeParams.bookID) {
@@ -118,21 +132,28 @@ angular.module("larsson-library.checkout", [
 				}
 			});
 		}
+		$scope.new = function() {
+			$location.path("/checkout/new");
+		}
+		$scope.detail = function(checkoutID) {
+			if (checkoutID) {
+				$location.path("/checkout/" + checkoutID);
+			} else {
+				$location.path("/checkout");
+			}
+		}
+		$scope.edit = function(checkoutID) {
+			$location.path("/checkout/" + checkoutID + "/edit");
+		}
 		$scope.save = function() {
 			(($scope.currentCheckout.CheckoutID)
 				? Checkout.update($scope.currentCheckout).success(function(data) {
-					$location.path("/checkout");
+					$location.path("/checkout/" + $scope.currentCheckout.CheckoutID);
 				})
 				: Checkout.create($scope.currentCheckout).success(function(data) {
-					$location.path("/checkout");
+					$location.path("/checkout/" + data.CheckoutID);
 				})
 			);
-		}
-		$scope.edit = function(checkoutID) {
-			$location.path("/checkout/" + checkoutID);
-		}
-		$scope.new = function() {
-			$location.path("/checkout/new");
 		}
 		$scope.remove = function(checkoutID) {
 			Checkout.remove(checkoutID).success(function() {

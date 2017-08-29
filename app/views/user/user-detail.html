@@ -1,24 +1,20 @@
 <div style="width:100%; padding: 25px; margin: 0 auto;">
-	<form>
-		<input type="hidden" name="UserID" ng-model="currentUser.UserID" />
-		<div class="mdl-textfield mdl-js-textfield">
-			<label>Full Name</label>
-			<input class="mdl-textfield__input" type="text" id="DisplayName" name="DisplayName" ng-model="currentUser.DisplayName"/>
-			<label class="mdl-textfield__label" for="DisplayName"></label>
-		</div>
+	<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="float: right; right: 50px;" type="button" value="Edit" ng-click="edit(currentUser.UserID)"/>
+	<div class="mdl-textfield mdl-js-textfield">
+		<label>Full Name</label>
 		<br/>
-		<div class="mdl-textfield mdl-js-textfield">
-			<label>First Name</label>
-			<input class="mdl-textfield__input" type="text" id="FirstName" name="FirstName" ng-model="currentUser.FirstName"/>
-			<label class="mdl-textfield__label" for="FirstName"></label>
-		</div>
+		<label>{{currentUser.DisplayName}}</label>
+	</div>
+	<br/>
+	<div class="mdl-textfield mdl-js-textfield">
+		<label>First Name</label>
 		<br/>
-		<div class="mdl-textfield mdl-js-textfield">
-			<label>Last Name</label>
-			<input class="mdl-textfield__input" type="text" id="LastName" name="LastName" ng-model="currentUser.LastName"/>
-			<label class="mdl-textfield__label" for="LastName"></label>
-		</div>
+		<label>{{currentUser.FirstName}}</label>
+	</div>
+	<br/>
+	<div class="mdl-textfield mdl-js-textfield">
+		<label>Last Name</label>
 		<br/>
-		<input class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="button" value="Save" ng-click="save()"/>
-	</form>
+		<label>{{currentUser.LastName}}</label>
+	</div>
 </div>
